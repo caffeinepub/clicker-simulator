@@ -1,0 +1,278 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 1rem;
+
+    /* Cartoon Farm Palette — OKLCH (L C H) */
+    --background: 0.97 0.025 100;
+    --foreground: 0.22 0.05 60;
+
+    --card: 1 0 0;
+    --card-foreground: 0.22 0.05 60;
+
+    --popover: 1 0 0;
+    --popover-foreground: 0.22 0.05 60;
+
+    /* Sunny Yellow — Primary */
+    --primary: 0.82 0.18 88;
+    --primary-foreground: 0.22 0.05 60;
+
+    /* Grassy Green — Secondary */
+    --secondary: 0.72 0.19 145;
+    --secondary-foreground: 0.22 0.05 60;
+
+    /* Muted cream */
+    --muted: 0.94 0.02 90;
+    --muted-foreground: 0.5 0.04 80;
+
+    /* Sky Blue — Accent */
+    --accent: 0.72 0.13 230;
+    --accent-foreground: 1 0 0;
+
+    /* Tomato Orange — Destructive/Rebirth */
+    --destructive: 0.65 0.22 35;
+    --destructive-foreground: 1 0 0;
+
+    --border: 0.88 0.04 85;
+    --input: 0.92 0.03 85;
+    --ring: 0.82 0.18 88;
+
+    /* Game-specific tokens */
+    --coin-yellow: 0.86 0.2 88;
+    --farm-green: 0.68 0.22 145;
+    --sky-blue: 0.78 0.1 220;
+    --sun-orange: 0.74 0.2 55;
+    --rebirth-purple: 0.62 0.2 290;
+    --customer-pink: 0.8 0.15 340;
+
+    --chart-1: 0.82 0.18 88;
+    --chart-2: 0.72 0.19 145;
+    --chart-3: 0.72 0.13 230;
+    --chart-4: 0.74 0.2 55;
+    --chart-5: 0.65 0.22 35;
+
+    --sidebar: 0.94 0.03 95;
+    --sidebar-foreground: 0.22 0.05 60;
+    --sidebar-primary: 0.82 0.18 88;
+    --sidebar-primary-foreground: 0.22 0.05 60;
+    --sidebar-accent: 0.72 0.19 145;
+    --sidebar-accent-foreground: 0.22 0.05 60;
+    --sidebar-border: 0.88 0.04 85;
+    --sidebar-ring: 0.82 0.18 88;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Nunito", "Fredoka One", "Rounded Mplus 1c", ui-rounded, system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-game {
+    font-family: "Nunito", ui-rounded, system-ui, sans-serif;
+    font-weight: 800;
+  }
+
+  .text-coin {
+    color: oklch(var(--coin-yellow));
+  }
+
+  .text-farm-green {
+    color: oklch(var(--farm-green));
+  }
+
+  .text-sky {
+    color: oklch(var(--sky-blue));
+  }
+
+  .text-sun-orange {
+    color: oklch(var(--sun-orange));
+  }
+
+  .text-rebirth {
+    color: oklch(var(--rebirth-purple));
+  }
+
+  .bg-coin {
+    background-color: oklch(var(--coin-yellow));
+  }
+
+  .bg-farm-green {
+    background-color: oklch(var(--farm-green));
+  }
+
+  .bg-sky-blue {
+    background-color: oklch(var(--sky-blue));
+  }
+
+  .bg-sun-orange {
+    background-color: oklch(var(--sun-orange));
+  }
+
+  .bg-rebirth {
+    background-color: oklch(var(--rebirth-purple));
+  }
+
+  .border-coin {
+    border-color: oklch(var(--coin-yellow));
+  }
+
+  .border-farm-green {
+    border-color: oklch(var(--farm-green));
+  }
+}
+
+/* Farm background scene */
+.farm-bg {
+  background: linear-gradient(
+    to bottom,
+    oklch(0.78 0.1 220) 0%,
+    oklch(0.88 0.08 215) 40%,
+    oklch(0.75 0.18 135) 60%,
+    oklch(0.65 0.2 140) 100%
+  );
+}
+
+/* Coin sparkle animation */
+@keyframes float-up {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-80px) scale(1.3); }
+}
+
+@keyframes bounce-click {
+  0%, 100% { transform: scale(1); }
+  30% { transform: scale(0.92); }
+  60% { transform: scale(1.08); }
+}
+
+@keyframes customer-float {
+  0% { transform: translateY(0px) rotate(-3deg); }
+  50% { transform: translateY(-12px) rotate(3deg); }
+  100% { transform: translateY(0px) rotate(-3deg); }
+}
+
+@keyframes pop-in {
+  0% { transform: scale(0) rotate(-10deg); opacity: 0; }
+  60% { transform: scale(1.15) rotate(5deg); opacity: 1; }
+  100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@keyframes pop-out {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(0) rotate(10deg); opacity: 0; }
+}
+
+@keyframes shimmer-ring {
+  0% { box-shadow: 0 0 0 0 oklch(0.86 0.2 88 / 0.7); }
+  70% { box-shadow: 0 0 0 20px oklch(0.86 0.2 88 / 0); }
+  100% { box-shadow: 0 0 0 0 oklch(0.86 0.2 88 / 0); }
+}
+
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+  50% { opacity: 1; transform: scale(1) rotate(180deg); }
+}
+
+@keyframes star-spin {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.2); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+@keyframes rebirth-glow {
+  0%, 100% { box-shadow: 0 0 20px oklch(0.62 0.2 290 / 0.4); }
+  50% { box-shadow: 0 0 50px oklch(0.62 0.2 290 / 0.8), 0 0 80px oklch(0.74 0.2 55 / 0.4); }
+}
+
+@keyframes coin-spin {
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
+}
+
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-3deg); }
+  50% { transform: rotate(3deg); }
+}
+
+.animate-float-up {
+  animation: float-up 1.2s ease-out forwards;
+}
+
+.animate-bounce-click {
+  animation: bounce-click 0.3s ease-in-out;
+}
+
+.animate-customer-float {
+  animation: customer-float 2.5s ease-in-out infinite;
+}
+
+.animate-pop-in {
+  animation: pop-in 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-pop-out {
+  animation: pop-out 0.3s ease-in forwards;
+}
+
+.animate-shimmer-ring {
+  animation: shimmer-ring 0.8s ease-out;
+}
+
+.animate-sparkle {
+  animation: sparkle 1s ease-in-out infinite;
+}
+
+.animate-star-spin {
+  animation: star-spin 3s linear infinite;
+}
+
+.animate-rebirth-glow {
+  animation: rebirth-glow 2s ease-in-out infinite;
+}
+
+.animate-wiggle {
+  animation: wiggle 0.5s ease-in-out infinite;
+}
+
+/* Click button pulse */
+.click-btn-pulse {
+  animation: shimmer-ring 2s ease-out infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: oklch(0.92 0.03 100);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background: oklch(0.75 0.12 100);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.65 0.15 100);
+}
+
+/* Sun rays */
+@keyframes sun-rays {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.sun-rays {
+  animation: sun-rays 20s linear infinite;
+}
+
+/* Progress bars */
+.rebirth-progress {
+  background: linear-gradient(90deg, oklch(0.62 0.2 290), oklch(0.74 0.2 55));
+}
